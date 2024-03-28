@@ -1,7 +1,7 @@
 import Container from '../templates/Container'
 import './Subscription.css'
 import SubscriptionDate from './SubscriptionDate'
-function Subscription(props){
+const Subscription = (props) => {
    return(
     <Container className='subscription'>
         <SubscriptionDate date={props.date}/>

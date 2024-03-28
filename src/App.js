@@ -4,7 +4,7 @@ import Subscription from './Subscription/Subscription';
 import Container from './templates/Container';
 import React from 'react';
 
-function App() {
+ const App = () => {
   let subscriptions=[
     {
       id:"1",
