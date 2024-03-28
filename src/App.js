@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Subscription from './components/Subscription';
 import Container from './components/Container';
+import React from 'react';
 
 function App() {
   let subscriptions=[
@@ -28,6 +29,7 @@ function App() {
     let title="Monthly Subscription";
     let amount='125.60'; */
   return (
+    // React.createElement('div',{},React.createElement('h2',{},'Lets start!!'))
     <Container>
     <Subscription date={subscriptions[0].date} title={subscriptions[0].title} amount={subscriptions[0].amount}/>
     <Subscription date={subscriptions[1].date} title={subscriptions[1].title} amount={subscriptions[1].amount}/>
