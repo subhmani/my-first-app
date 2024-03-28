@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Subscription from './components/Subscription';
-import Container from './components/Container';
+import Subscription from './Subscription/Subscription';
+import Container from './templates/Container';
 import React from 'react';
 
 function App() {
