@@ -1,13 +1,20 @@
+import { useState } from "react"
 import "./NewSubscription.css"
 const FormSubscription=()=>{
+    const [userTitle,setUserTitle]=useState("");
+    const [userDate,setUserDate]=useState("");
+    const [userAmount,setUserAmount]=useState("");
     const titleChangeHandler = (events) =>{
-        console.log("onTitleChange",events,events.value,events.target);
+        setUserTitle(events.target.value);
+       // console.log("onTitleChange", events.target.value , userTitle);
     }
     const dateChangeHandler = (events)=>{
-        
+        setUserDate(events.target.value);
+       // console.log("userDate",userDate)
     }
     const amountChangeHandler = (events)=>{
-        
+        setUserAmount(events.target.value);
+        //console.log("userAmount",userAmount)
     }
     return(
         <form>
