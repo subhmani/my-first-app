@@ -7,18 +7,27 @@ const FormSubscription=()=>{
     const [form,setform]=useState({userTitle:'',userDate:'',userAmount:''})
     const titleChangeHandler = (events) =>{
         //setUserTitle(events.target.value);
-        setform({...form,userTitle:events.target.value})
+        //setform({...form,userTitle:events.target.value})
+        setform((prevState)=>{
+            return {...prevState,userTitle:events.target.value}
+    })
         console.log(form)
        // console.log("onTitleChange", events.target.value , userTitle);
     }
     const dateChangeHandler = (events)=>{
-        setform({...form,userDate:events.target.value})
+        //setform({...form,userDate:events.target.value})
+        setform((prevState)=>{
+            return {...prevState,userDate:events.target.value}
+    })
         console.log(form)
         //setUserDate(events.target.value);
        // console.log("userDate",userDate)
     }
     const amountChangeHandler = (events)=>{
-        setform({...form,userAmount:events.target.value})
+       // setform({...form,userAmount:events.target.value})
+        setform((prevState)=>{
+            return {...prevState,userAmount:events.target.value}
+    })
         console.log(form)
        // setUserAmount(events.target.value);
         //console.log("userAmount",userAmount)
