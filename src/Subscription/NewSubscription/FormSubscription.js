@@ -32,8 +32,13 @@ const FormSubscription=()=>{
        // setUserAmount(events.target.value);
         //console.log("userAmount",userAmount)
     }
+    const submitHandler=(events)=>{
+        events.preventDefault()
+        const Subscription={title:form.userTitle,amount:form.userAmount,date:new Date(form.userDate)}
+        console.log("on submit",Subscription)
+    }
     return(
-        <form>
+        <form onSubmit={submitHandler}>
             <div className="new_subscription_controls">
                 <div className="new_subscription_control">
                     <label>Title</label>
@@ -53,7 +58,7 @@ const FormSubscription=()=>{
                 <button type="submit">Add Subscription</button>
 
             </div>
-        </form>
+        </form>   
     )
 
 }
