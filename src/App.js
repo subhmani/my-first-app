@@ -42,13 +42,16 @@ const [filteredData,setFilteredData]=useState('2021');
     }
   return (
     // React.createElement('div',{},React.createElement('h2',{},'Lets start!!'))
+    
     <Container>
-    <Subscription date={subscriptions[0].date} title={subscriptions[0].title} amount={subscriptions[0].amount}/>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredData}/>
+    {subscriptions.map(subscription =><Subscription date={subscription.date} title={subscription.title} amount={subscription.amount}/>)}
+    
+    {/* <Subscription date={subscriptions[0].date} title={subscriptions[0].title} amount={subscriptions[0].amount}/>
     <Subscription date={subscriptions[1].date} title={subscriptions[1].title} amount={subscriptions[1].amount}/>
     <Subscription date={subscriptions[2].date} title={subscriptions[2].title} amount={subscriptions[2].amount}/>
-
+ */}
     </Container>
   );
 }
