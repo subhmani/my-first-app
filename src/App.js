@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Subscription from './Subscription/Subscription';
 import Container from './templates/Container';
-import React from 'react';
+import React, { useState } from 'react';
 import Filter from './Subscription/NewSubscription/Filter';
 import NewSubscription from './Subscription/NewSubscription/NewSubscription';
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
@@ -28,6 +28,7 @@ import { eventWrapper } from '@testing-library/user-event/dist/utils';
       amount:"425.50"
     }
 ]
+const [filteredData,setFilteredData]=useState('2021');
     /* let date=(new Date('2024','03','26'));
     let title="Monthly Subscription";
     let amount='125.60'; */
@@ -36,6 +37,7 @@ import { eventWrapper } from '@testing-library/user-event/dist/utils';
       console.log("on add Subscription",data)
     }
     const filterChangeHandler=(data)=>{
+      setFilteredData(data);
       console.log('filter change handler',data)
     }
   return (
@@ -43,7 +45,7 @@ import { eventWrapper } from '@testing-library/user-event/dist/utils';
     <Container>
     <Subscription date={subscriptions[0].date} title={subscriptions[0].title} amount={subscriptions[0].amount}/>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
-    <Filter onFilterChange={filterChangeHandler}/>
+    <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredData}/>
     <Subscription date={subscriptions[1].date} title={subscriptions[1].title} amount={subscriptions[1].amount}/>
     <Subscription date={subscriptions[2].date} title={subscriptions[2].title} amount={subscriptions[2].amount}/>
 

@@ -8,7 +8,7 @@ const Filter=(props)=>{
         <div className='filter'>
             <div className='filter_control'>
                 <label>Filter by Year</label>
-                <select onChange={onSelectHandler}>
+                <select value={props.selectedFilter} onChange={onSelectHandler}>
                     <option value='2024'>2024</option>
                     <option value='2023'>2023</option>
                     <option value='2022'>2022</option>
