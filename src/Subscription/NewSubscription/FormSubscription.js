@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "./NewSubscription.css"
-const FormSubscription=()=>{
+const FormSubscription=(props)=>{
    /*  const [userTitle,setUserTitle]=useState("");
     const [userDate,setUserDate]=useState("");
     const [userAmount,setUserAmount]=useState(""); */
@@ -35,6 +35,7 @@ const FormSubscription=()=>{
     const submitHandler=(events)=>{
         events.preventDefault()
         const Subscription={title:form.userTitle,amount:form.userAmount,date:new Date(form.userDate)}
+        props.onSave(Subscription);
         console.log("on submit",Subscription)
     }
     return(

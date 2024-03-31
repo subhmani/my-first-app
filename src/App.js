@@ -29,11 +29,15 @@ import NewSubscription from './Subscription/NewSubscription/NewSubscription';
     /* let date=(new Date('2024','03','26'));
     let title="Monthly Subscription";
     let amount='125.60'; */
+    const addSubscriptionHandler=(data)=>{
+      subscriptions.push(data)
+      console.log("on add Subscription",data)
+    }
   return (
     // React.createElement('div',{},React.createElement('h2',{},'Lets start!!'))
     <Container>
     <Subscription date={subscriptions[0].date} title={subscriptions[0].title} amount={subscriptions[0].amount}/>
-    <NewSubscription/>
+    <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Subscription date={subscriptions[1].date} title={subscriptions[1].title} amount={subscriptions[1].amount}/>
     <Subscription date={subscriptions[2].date} title={subscriptions[2].title} amount={subscriptions[2].amount}/>
 
