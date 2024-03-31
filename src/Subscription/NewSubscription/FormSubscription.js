@@ -4,7 +4,7 @@ const FormSubscription=()=>{
    /*  const [userTitle,setUserTitle]=useState("");
     const [userDate,setUserDate]=useState("");
     const [userAmount,setUserAmount]=useState(""); */
-    const [form,setform]=useState({userTitle:'',userDate:'',userAmount:''})
+    const [form,setform]=useState({userTitle:'Enter Subscription Title',userDate:'',userAmount:'Enter Amount'})
     const titleChangeHandler = (events) =>{
         //setUserTitle(events.target.value);
         //setform({...form,userTitle:events.target.value})
@@ -42,15 +42,15 @@ const FormSubscription=()=>{
             <div className="new_subscription_controls">
                 <div className="new_subscription_control">
                     <label>Title</label>
-                    <input type="text" onChange={titleChangeHandler} placeholder="Enter here"></input>
+                    <input type="text" value={form.userTitle} onChange={titleChangeHandler}></input>
                 </div>
                 <div className="new_subscription_control">
                     <label>Date</label>
-                    <input type="date" onChange={dateChangeHandler} placeholder="Enter here"></input>
+                    <input type="date" value={form.userDate} onChange={dateChangeHandler} ></input>
                 </div>
                 <div className="new_subscription_control">
                     <label>Amount</label>
-                    <input type="text" onChange={amountChangeHandler} placeholder="Enter here"></input>
+                    <input type="text" value={form.userAmount} onChange={amountChangeHandler} ></input>
                 </div>
 
             </div>
