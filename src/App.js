@@ -14,19 +14,19 @@ const INITIAL_SUBSCRIPTION=[{
 },
 {
   id:"2",
-  date:(new Date('2024','06','28')),
+  date:(new Date('2022','06','28')),
   title:"Annual Subscription",
   amount:"1125.00"
 },
 {
   id:"3",
-  date:(new Date('2024','09','05')),
+  date:(new Date('2021','09','05')),
   title:"Quarterly Subscription",
   amount:"425.50"
 }]
  const App = () => {
   const [subscriptions,setSubscriptions]=useState(INITIAL_SUBSCRIPTION)
-const [filteredData,setFilteredData]=useState('2021');
+const [filteredYear,setFilteredYear]=useState('2021');
     /* let date=(new Date('2024','03','26'));
     let title="Monthly Subscription";
     let amount='125.60'; */
@@ -36,16 +36,20 @@ const [filteredData,setFilteredData]=useState('2021');
       console.log("on add Subscription",subscriptions)
     }
     const filterChangeHandler=(data)=>{
-      setFilteredData(data);
+      setFilteredYear(data);
       console.log('filter change handler',data)
     }
+    const filteredSubscriptions=subscriptions.filter((item)=>{
+      return item.date.getFullYear().toString()===filteredYear
+    })
   return (
     // React.createElement('div',{},React.createElement('h2',{},'Lets start!!'))
     
     <Container>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
-    <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredData}/>
-    {subscriptions.map(subscription =><Subscription key={subscription.id} date={subscription.date} title={subscription.title} amount={subscription.amount}/>)}
+    <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
+    
+    {filteredSubscriptions.map(subscription =><Subscription key={subscription.id} date={subscription.date} title={subscription.title} amount={subscription.amount}/>)}
     
     {/* <Subscription date={subscriptions[0].date} title={subscriptions[0].title} amount={subscriptions[0].amount}/>
     <Subscription date={subscriptions[1].date} title={subscriptions[1].title} amount={subscriptions[1].amount}/>
