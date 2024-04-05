@@ -48,9 +48,19 @@ const [filteredYear,setFilteredYear]=useState('2021');
     <Container>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
-    
-    {filteredSubscriptions.map(subscription =><Subscription key={subscription.id} date={subscription.date} title={subscription.title} amount={subscription.amount}/>)}
-    
+    {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
+    {filteredSubscriptions.length !== 0 && 
+    filteredSubscriptions.map(subscription =>
+      <Subscription key={subscription.id} date={subscription.date} 
+      title={subscription.title} amount={subscription.amount}/>)}
+      
+    {/* {filteredSubscriptions.length===0? <h3>No data found</h3>:
+    filteredSubscriptions.map(subscription =>
+    <Subscription key={subscription.id} date={subscription.date} 
+    title={subscription.title} amount={subscription.amount}/>)} */}
+  
+    {/* {filteredSubscriptions.map(subscription =><Subscription key={subscription.id} date={subscription.date} title={subscription.title} amount={subscription.amount}/>)}
+     */}
     {/* <Subscription date={subscriptions[0].date} title={subscriptions[0].title} amount={subscriptions[0].amount}/>
     <Subscription date={subscriptions[1].date} title={subscriptions[1].title} amount={subscriptions[1].amount}/>
     <Subscription date={subscriptions[2].date} title={subscriptions[2].title} amount={subscriptions[2].amount}/>
