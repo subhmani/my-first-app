@@ -42,18 +42,26 @@ const [filteredYear,setFilteredYear]=useState('2021');
     const filteredSubscriptions=subscriptions.filter((item)=>{
       return item.date.getFullYear().toString()===filteredYear
     })
+
+    let content=<h3>No Data found</h3>;
+    if (filteredSubscriptions.length !==0){
+      content=filteredSubscriptions.map(subscription =>
+        <Subscription key={subscription.id} date={subscription.date} 
+        title={subscription.title} amount={subscription.amount}/>)
+    }
   return (
     // React.createElement('div',{},React.createElement('h2',{},'Lets start!!'))
     
     <Container>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
-    {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
+    {content}
+    {/* {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
     {filteredSubscriptions.length !== 0 && 
     filteredSubscriptions.map(subscription =>
       <Subscription key={subscription.id} date={subscription.date} 
-      title={subscription.title} amount={subscription.amount}/>)}
-      
+      title={subscription.title} amount={subscription.amount}/>)} */}
+
     {/* {filteredSubscriptions.length===0? <h3>No data found</h3>:
     filteredSubscriptions.map(subscription =>
     <Subscription key={subscription.id} date={subscription.date} 
