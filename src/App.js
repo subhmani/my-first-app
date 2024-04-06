@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import Filter from './Subscription/NewSubscription/Filter';
 import NewSubscription from './Subscription/NewSubscription/NewSubscription';
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
+import SubscriptionList from './Subscription/NewSubscription/SubscriptionList';
 const INITIAL_SUBSCRIPTION=[{
   id:"1",
   date:(new Date('2024','03','23')),
@@ -43,19 +44,19 @@ const [filteredYear,setFilteredYear]=useState('2021');
       return item.date.getFullYear().toString()===filteredYear
     })
 
-    let content=<h3>No Data found</h3>;
+   /*  let content=<h3>No Data found</h3>;
     if (filteredSubscriptions.length !==0){
       content=filteredSubscriptions.map(subscription =>
         <Subscription key={subscription.id} date={subscription.date} 
         title={subscription.title} amount={subscription.amount}/>)
-    }
+    } */
   return (
     // React.createElement('div',{},React.createElement('h2',{},'Lets start!!'))
     
     <Container>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
-    {content}
+    <SubscriptionList subscription={filteredSubscriptions}/>
     {/* {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
     {filteredSubscriptions.length !== 0 && 
     filteredSubscriptions.map(subscription =>
