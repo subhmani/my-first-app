@@ -36,6 +36,7 @@ const FormSubscription=(props)=>{
         events.preventDefault()
         const Subscription={title:form.userTitle,amount:form.userAmount,date:new Date(form.userDate)}
         props.onSave(Subscription);
+        props.onCancel();
         console.log("on submit",Subscription)
     }
     return(
@@ -56,7 +57,8 @@ const FormSubscription=(props)=>{
 
             </div>
             <div className="new_subscription_actions">
-                <button type="submit">Add Subscription</button>
+            <button className="danger" type="button" onClick={props.onCancel}>Cancel</button>
+                <button type="submit">Save</button>
 
             </div>
         </form>   

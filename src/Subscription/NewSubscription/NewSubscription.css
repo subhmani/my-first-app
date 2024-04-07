@@ -55,3 +55,6 @@
 .new_subscription button.alternative.active{
     background-color: #1260b1;
 }
+.danger{
+    background-color: tomato !important;
+}
