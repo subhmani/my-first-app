@@ -1,12 +1,15 @@
 import './Chart.css';
+import Chartbar from './Chartbar'
 const Chart=(props)=>{
+    const dataSetValues=props.dataSets.map(dataSet=>dataSetValues.value)
+    const max=Math.max(...dataSetValues);
     return (
     <div className='chart'>
-        {props.dataSets.map((data)=>{<Chartbar 
-        value={data.value} 
+        {props.dataSets.map((data)=>
+        {return <Chartbar value={data.value} 
         label={data.label} 
         key={data.label} 
-        maxValue={null}/>})}
+        maxValue={max}/>})}
 
     </div>
     )

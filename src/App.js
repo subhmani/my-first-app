@@ -7,6 +7,7 @@ import Filter from './Subscription/NewSubscription/Filter';
 import NewSubscription from './Subscription/NewSubscription/NewSubscription';
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
 import SubscriptionList from './Subscription/NewSubscription/SubscriptionList';
+import SubscriptionChart from './Subscription/NewSubscription/SubscriptionChart';
 const INITIAL_SUBSCRIPTION=[{
   id:"1",
   date:(new Date('2024','03','23')),
@@ -56,6 +57,7 @@ const [filteredYear,setFilteredYear]=useState('2021');
     <Container>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
+    <SubscriptionChart filteredSubscriptions = {filteredSubscriptions}/>
     <SubscriptionList subscription={filteredSubscriptions}/>
     {/* {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
     {filteredSubscriptions.length !== 0 && 
