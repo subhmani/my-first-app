@@ -1,7 +1,7 @@
 import './Chart.css';
 import Chartbar from './Chartbar'
 const Chart=(props)=>{
-    const dataSetValues=props.dataSets.map(dataSet=>dataSetValues.value)
+    const dataSetValues=props.dataSets.map(dataSet=>dataSet.value);
     const max=Math.max(...dataSetValues);
     return (
     <div className='chart'>
