@@ -5,9 +5,13 @@ const FormSubscription=(props)=>{
     const [userDate,setUserDate]=useState("");
     const [userAmount,setUserAmount]=useState(""); */
     const [form,setform]=useState({userTitle:'Enter Subscription Title',userDate:'',userAmount:'Enter Amount'})
+    const [isValid,setIsValid]=useState(true)
     const titleChangeHandler = (events) =>{
         //setUserTitle(events.target.value);
         //setform({...form,userTitle:events.target.value})
+        if( events.target.value.trim().length>0){
+            setIsValid (true);
+        }
         setform((prevState)=>{
             return {...prevState,userTitle:events.target.value}
     })
@@ -34,6 +38,10 @@ const FormSubscription=(props)=>{
     }
     const submitHandler=(events)=>{
         events.preventDefault()
+        if (form.userTitle.trim().length==0){
+            setIsValid(false);
+            return
+        }
         const Subscription={title:form.userTitle,amount:form.userAmount,date:new Date(form.userDate)}
         props.onSave(Subscription);
         props.onCancel();
@@ -43,8 +51,8 @@ const FormSubscription=(props)=>{
         <form onSubmit={submitHandler}>
             <div className="new_subscription_controls">
                 <div className="new_subscription_control">
-                    <label>Title</label>
-                    <input type="text" value={form.userTitle} onChange={titleChangeHandler}></input>
+                    <label style={{color:!isValid?'red':'black'}}>Title</label>
+                    <input style={{borderColor:!isValid?'red':'black'}} type="text" value={form.userTitle} onChange={titleChangeHandler}></input>
                 </div>
                 <div className="new_subscription_control">
                     <label>Date</label>

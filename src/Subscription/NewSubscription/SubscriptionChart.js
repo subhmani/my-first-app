@@ -21,6 +21,5 @@ const SubscriptionChart=(props)=>{
     return (
         <Chart dataSets={chartData}/>
     )
-
 }
 export default SubscriptionChart;

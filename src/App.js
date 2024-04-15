@@ -57,7 +57,7 @@ const [filteredYear,setFilteredYear]=useState('2021');
     <Container>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
-    <SubscriptionChart filteredSubscriptions = {filteredSubscriptions}/>
+    {/* <SubscriptionChart filteredSubscriptions = {filteredSubscriptions}/> */}
     <SubscriptionList subscription={filteredSubscriptions}/>
     {/* {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
     {filteredSubscriptions.length !== 0 && 
