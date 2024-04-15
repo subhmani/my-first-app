@@ -49,10 +49,14 @@ const FormSubscription=(props)=>{
     }
     return(
         <form onSubmit={submitHandler}>
-            <div className="new_subscription_controls">
-                <div className="new_subscription_control">
-                    <label style={{color:!isValid?'red':'black'}}>Title</label>
-                    <input style={{borderColor:!isValid?'red':'black'}} type="text" value={form.userTitle} onChange={titleChangeHandler}></input>
+            <div className="new_subscription_controls ">
+                <div className={`new_subscription_control ${!isValid?'invalid':''} ${isValid?'abc':'xyz'}`}>
+                   
+                   {/*  style={{color:!isValid?'red':'black'}}
+                   style={{borderColor:!isValid?'red':'black'}} */}
+                    
+                    <label >Title</label>
+                    <input  type="text" value={form.userTitle} onChange={titleChangeHandler}></input>
                 </div>
                 <div className="new_subscription_control">
                     <label>Date</label>

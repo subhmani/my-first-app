@@ -58,3 +58,9 @@
 .danger{
     background-color: tomato !important;
 }
+.new_subscription_control.invalid input{
+    border-color: red;
+}
+.new_subscription_control.invalid label{
+    color: red;
+}
