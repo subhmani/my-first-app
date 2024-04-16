@@ -38,7 +38,7 @@ const FormSubscription=(props)=>{
     }
     const submitHandler=(events)=>{
         events.preventDefault()
-        if (form.userTitle.trim().length==0){
+        if (form.userTitle.trim().length===0){
             setIsValid(false);
             return
         }

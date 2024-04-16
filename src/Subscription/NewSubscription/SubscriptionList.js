@@ -1,7 +1,7 @@
 import './SubscriptionList.css';
 import Subscription from '../Subscription';
 const SubscriptionList=(props)=>{
-if (props.subscription.length == 0){return <h3 className='list_no_data'>No Data Found</h3>}
+if (props.subscription.length === 0){return <h3 className='list_no_data'>No Data Found</h3>}
 return(
     <ul className='list'>
     {props.subscription.map(subscription =>
