@@ -1,5 +1,29 @@
 import { useState } from "react"
 import "./NewSubscription.css"
+import styled from 'styled-components';
+const FormControl=styled.div`{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+&label{
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+    color:${props=>props.inValid?'red':'black'};
+}
+&input{
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid ${props=>props.inValid?'red':'black'};
+    width: 20rem;
+    max-width: 100%;
+
+}
+`;
 const FormSubscription=(props)=>{
    /*  const [userTitle,setUserTitle]=useState("");
     const [userDate,setUserDate]=useState("");
@@ -50,14 +74,18 @@ const FormSubscription=(props)=>{
     return(
         <form onSubmit={submitHandler}>
             <div className="new_subscription_controls ">
-                <div className={`new_subscription_control ${!isValid?'invalid':''} ${isValid?'abc':'xyz'}`}>
+              {/*  <div className={`new_subscription_control ${!isValid?'invalid':''} ${isValid?'abc':'xyz'}`}>
                    
-                   {/*  style={{color:!isValid?'red':'black'}}
-                   style={{borderColor:!isValid?'red':'black'}} */}
+                    style={{color:!isValid?'red':'black'}}
+                   style={{borderColor:!isValid?'red':'black'}}
                     
                     <label >Title</label>
                     <input  type="text" value={form.userTitle} onChange={titleChangeHandler}></input>
-                </div>
+                </div> */}
+                <FormControl className={`${!isValid?'invalid':''}`} inValid={!isValid}  >
+                <label >Title</label>
+                <input  type="text" value={form.userTitle} onChange={titleChangeHandler}></input>
+                </FormControl>
                 <div className="new_subscription_control">
                     <label>Date</label>
                     <input type="date" value={form.userDate} onChange={dateChangeHandler} ></input>
