@@ -56,11 +56,11 @@
     background-color: #1260b1;
 }
 .danger{
-    background-color: tomato !important;
+    background-color: #8b0909 !important;
 }
 .new_subscription_control.invalid input{
-    border-color: red;
+    border-color: #8b0909;
 }
 .new_subscription_control.invalid label{
-    color: red;
+    color: #8b0909;
 }
