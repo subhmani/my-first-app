@@ -12,13 +12,13 @@ const FormControl=styled.div`{
     font-weight: bold;
     margin-bottom: 0.5rem;
     display: block;
-    color:${props=>props.inValid?'red':'black'};
+    color:${props=>props.onInvalid?'red':'black'};
 }
 &input{
     font: inherit;
     padding: 0.5rem;
     border-radius: 6px;
-    border: 1px solid ${props=>props.inValid?'red':'black'};
+    border: 1px solid ${props=>props.onInvalid?'red':'black'};
     width: 20rem;
     max-width: 100%;
 
@@ -82,7 +82,7 @@ const FormSubscription=(props)=>{
                     <label >Title</label>
                     <input  type="text" value={form.userTitle} onChange={titleChangeHandler}></input>
                 </div> */}
-                <FormControl className={`${!isValid?'invalid':''}`} inValid={!isValid}  >
+                <FormControl className={`${!isValid?'invalid':''}`} onInvalid={!isValid}  >
                 <label >Title</label>
                 <input  type="text" value={form.userTitle} onChange={titleChangeHandler}></input>
                 </FormControl>
