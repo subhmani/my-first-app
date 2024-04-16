@@ -18,7 +18,7 @@ const NewSubscription=(props)=>{
     }
     return <div className="new_subscription">
        {showForm && <FormSubscription onSave={onSaveHandler} onCancel={hideFormHandler}/>} 
-        <button type="button" onClick={showFormHandler}>Add New</button>
+        <button type="button" className="responsive" onClick={showFormHandler}>Add New</button>
         </div>
         
     

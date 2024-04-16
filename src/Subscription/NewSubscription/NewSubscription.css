@@ -64,3 +64,13 @@
 .new_subscription_control.invalid label{
     color: #8b0909;
 }
+.responsive{
+    width: 100%;
+}
+@media(min-width:1366px){
+    .responsive{
+        width: 20%;
+        margin-top: 0px;
+    }
+
+}
