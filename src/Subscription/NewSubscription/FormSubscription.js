@@ -22,7 +22,7 @@ import styled from 'styled-components';
     border: 1px solid ${props=>props.inValid?'red':'#ccc'};
     width: 20rem;
     max-width: 100%;
-
+ 
 }
 `; */
 const FormSubscription=(props)=>{

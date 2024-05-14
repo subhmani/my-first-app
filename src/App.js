@@ -29,6 +29,11 @@ const INITIAL_SUBSCRIPTION=[{
  const App = () => {
   const [subscriptions,setSubscriptions]=useState(INITIAL_SUBSCRIPTION)
 const [filteredYear,setFilteredYear]=useState('2021');
+if(localStorage.getItem('filteredYear')){
+  setFilteredYear(localStorage.getItem('filteredYear'))
+  console.log(localStorage.getItem('filteredYear'))
+}
+
     /* let date=(new Date('2024','03','26'));
     let title="Monthly Subscription";
     let amount='125.60'; */
@@ -38,6 +43,7 @@ const [filteredYear,setFilteredYear]=useState('2021');
       console.log("on add Subscription",subscriptions)
     }
     const filterChangeHandler=(data)=>{
+      localStorage.setItem('filteredYear',data)
       setFilteredYear(data);
       console.log('filter change handler',data)
     }
