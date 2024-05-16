@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import "./NewSubscription.css"
 import styled from 'styled-components';
 
@@ -31,6 +31,12 @@ const FormSubscription=(props)=>{
     const [userAmount,setUserAmount]=useState(""); */
     const [form,setform]=useState({userTitle:'Enter Subscription Title',userDate:'',userAmount:'Enter Amount'})
     const [isValid,setIsValid]=useState(true)
+    useEffect(()=>{
+        if( form.userTitle.trim().length>0){
+            setIsValid (true);
+        }
+        
+    },[form.userTitle])
     const titleChangeHandler = (events) =>{
         //setUserTitle(events.target.value);
         //setform({...form,userTitle:events.target.value})
