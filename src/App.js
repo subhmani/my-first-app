@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Subscription from './Subscription/Subscription';
 import Container from './templates/Container';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Filter from './Subscription/NewSubscription/Filter';
 import NewSubscription from './Subscription/NewSubscription/NewSubscription';
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
@@ -29,10 +29,13 @@ const INITIAL_SUBSCRIPTION=[{
  const App = () => {
   const [subscriptions,setSubscriptions]=useState(INITIAL_SUBSCRIPTION)
 const [filteredYear,setFilteredYear]=useState('2021');
-if(localStorage.getItem('filteredYear')){
-  setFilteredYear(localStorage.getItem('filteredYear'))
-  console.log(localStorage.getItem('filteredYear'))
-}
+useEffect(()=>{
+  if(localStorage.getItem('filteredYear')){
+    setFilteredYear(localStorage.getItem('filteredYear'))
+    console.log('in useEffect',localStorage.getItem('filteredYear'))
+  }
+},[]);
+
 
     /* let date=(new Date('2024','03','26'));
     let title="Monthly Subscription";
