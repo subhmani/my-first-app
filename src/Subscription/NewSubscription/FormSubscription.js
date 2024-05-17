@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useReducer } from "react"
 import "./NewSubscription.css"
 import styled from 'styled-components';
 
@@ -29,6 +29,11 @@ const FormSubscription=(props)=>{
    /*  const [userTitle,setUserTitle]=useState("");
     const [userDate,setUserDate]=useState("");
     const [userAmount,setUserAmount]=useState(""); */
+    const [myState,setMyState]=useReducer((latestStateValue,action)=>{
+
+
+        return latestStateValue
+    },'state',()=>{});
     const [form,setform]=useState({userTitle:'Enter Subscription Title',userDate:'',userAmount:'Enter Amount'})
     const [isValid,setIsValid]=useState(true)
     useEffect(()=>{
@@ -36,6 +41,7 @@ const FormSubscription=(props)=>{
             console.log('Using effect');
             if( form.userTitle.trim().length>0){
                 setIsValid (true);
+                setMyState();
             }
         }, 500);
        return ()=>{
