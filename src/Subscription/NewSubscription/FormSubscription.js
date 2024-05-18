@@ -1,6 +1,7 @@
 import { useState, useEffect, useReducer } from "react"
 import "./NewSubscription.css"
 import styled from 'styled-components';
+import { type } from "@testing-library/user-event/dist/type";
 
 /* const FormControl=styled.div`{
     display: flex;
@@ -25,15 +26,28 @@ import styled from 'styled-components';
  
 }
 `; */
+const formReducerFn = (latestState,action)=>{
+    console.log('in form reducer fn',latestState, action)
+    if(action.type === 'TITLE'){
+        console.log('form function title block',latestState, action)
+        return {...latestState,userTitle:action.val}
+    }
+    else if(action.type === 'DATE'){
+        return{...latestState,userDate:action.val}
+    }
+    else if(action.type === 'AMOUNT'){
+        return{...latestState,userAmount:action.val}
+    }
+    return {userTitle:'Enter Subscription Title',userDate:'',userAmount:'Enter Amount'}
+}
 const FormSubscription=(props)=>{
    /*  const [userTitle,setUserTitle]=useState("");
     const [userDate,setUserDate]=useState("");
     const [userAmount,setUserAmount]=useState(""); */
     const [myState,setMyState]=useReducer((latestStateValue,action)=>{
-
-
-        return latestStateValue
+         return latestStateValue
     },'state',()=>{});
+    const[formReducer,setFormReducer]=useReducer(formReducerFn,{userTitle:'Enter Subscription Title',userDate:'',userAmount:'Enter Amount'})
     const [form,setform]=useState({userTitle:'Enter Subscription Title',userDate:'',userAmount:'Enter Amount'})
     const [isValid,setIsValid]=useState(true)
     useEffect(()=>{
@@ -41,7 +55,7 @@ const FormSubscription=(props)=>{
             console.log('Using effect');
             if( form.userTitle.trim().length>0){
                 setIsValid (true);
-                setMyState();
+               
             }
         }, 500);
        return ()=>{
@@ -51,11 +65,12 @@ const FormSubscription=(props)=>{
         
     },[form.userTitle])
     const titleChangeHandler = (events) =>{
-        //setUserTitle(events.target.value);
-        //setform({...form,userTitle:events.target.value})
+        /* setUserTitle(events.target.value);
+        setform({...form,userTitle:events.target.value})
         if( events.target.value.trim().length>0){
             setIsValid (true);
-        }
+        } */
+        setFormReducer({type:'TITLE',val:events.target.value})
         setform((prevState)=>{
             return {...prevState,userTitle:events.target.value}
     })
@@ -64,6 +79,7 @@ const FormSubscription=(props)=>{
     }
     const dateChangeHandler = (events)=>{
         //setform({...form,userDate:events.target.value})
+        setFormReducer({type:'DATE',val:events.target.value})
         setform((prevState)=>{
             return {...prevState,userDate:events.target.value}
     })
@@ -73,6 +89,7 @@ const FormSubscription=(props)=>{
     }
     const amountChangeHandler = (events)=>{
        // setform({...form,userAmount:events.target.value})
+       setFormReducer({type:'AMOUNT',val:events.target.value})
         setform((prevState)=>{
             return {...prevState,userAmount:events.target.value}
     })
