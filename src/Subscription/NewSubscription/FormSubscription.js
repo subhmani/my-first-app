@@ -48,12 +48,13 @@ const FormSubscription=(props)=>{
          return latestStateValue
     },'state',()=>{});
     const[formReducer,setFormReducer]=useReducer(formReducerFn,{userTitle:'Enter Subscription Title',userDate:'',userAmount:'Enter Amount'})
-    const [form,setform]=useState({userTitle:'Enter Subscription Title',userDate:'',userAmount:'Enter Amount'})
+    //const [form,setform]=useState({userTitle:'Enter Subscription Title',userDate:'',userAmount:'Enter Amount'})
     const [isValid,setIsValid]=useState(true)
+    const {userTitle: titleReducer} = formReducer
     useEffect(()=>{
        const timerId= setTimeout(() => {
             console.log('Using effect');
-            if( form.userTitle.trim().length>0){
+            if( titleReducer.trim().length>0){
                 setIsValid (true);
                
             }
@@ -63,7 +64,7 @@ const FormSubscription=(props)=>{
         clearTimeout(timerId);
     }
         
-    },[form.userTitle])
+    },[titleReducer])
     const titleChangeHandler = (events) =>{
         /* setUserTitle(events.target.value);
         setform({...form,userTitle:events.target.value})
@@ -71,18 +72,18 @@ const FormSubscription=(props)=>{
             setIsValid (true);
         } */
         setFormReducer({type:'TITLE',val:events.target.value})
-        setform((prevState)=>{
+        /* setform((prevState)=>{
             return {...prevState,userTitle:events.target.value}
-    })
-        console.log(form)
+    }) */
+        
        // console.log("onTitleChange", events.target.value , userTitle);
     }
     const dateChangeHandler = (events)=>{
         //setform({...form,userDate:events.target.value})
         setFormReducer({type:'DATE',val:events.target.value})
-        setform((prevState)=>{
+       /*  setform((prevState)=>{
             return {...prevState,userDate:events.target.value}
-    })
+    }) */
         console.log(form)
         //setUserDate(events.target.value);
        // console.log("userDate",userDate)
@@ -90,20 +91,20 @@ const FormSubscription=(props)=>{
     const amountChangeHandler = (events)=>{
        // setform({...form,userAmount:events.target.value})
        setFormReducer({type:'AMOUNT',val:events.target.value})
-        setform((prevState)=>{
+       /*  setform((prevState)=>{
             return {...prevState,userAmount:events.target.value}
-    })
-        console.log(form)
+    }) */
+        
        // setUserAmount(events.target.value);
         //console.log("userAmount",userAmount)
     }
     const submitHandler=(events)=>{
         events.preventDefault()
-        if (form.userTitle.trim().length===0){
+        if (formReducer.userTitle.trim().length===0){
             setIsValid(false);
             return
         }
-        const Subscription={title:form.userTitle,amount:form.userAmount,date:new Date(form.userDate)}
+        const Subscription={title:formReducer.userTitle,amount:formReducer.userAmount,date:new Date(formReducer.userDate)}
         props.onSave(Subscription);
         props.onCancel();
         console.log("on submit",Subscription)
@@ -121,16 +122,16 @@ const FormSubscription=(props)=>{
                 </div> */}
                {/*  <FormControl inValid={!isValid}> */}
                 <label >Title</label>
-                <input  type="text" value={form.userTitle} onChange={titleChangeHandler}></input>
+                <input  type="text" value={titleReducer} onChange={titleChangeHandler}></input>
                 {/* </FormControl> */}
                 </div>
                 <div className="new_subscription_control">
                     <label>Date</label>
-                    <input type="date" value={form.userDate} onChange={dateChangeHandler} ></input>
+                    <input type="date" value={formReducer.userDate} onChange={dateChangeHandler} ></input>
                 </div>
                 <div className="new_subscription_control">
                     <label>Amount</label>
-                    <input type="text" value={form.userAmount} onChange={amountChangeHandler} ></input>
+                    <input type="text" value={formReducer.userAmount} onChange={amountChangeHandler} ></input>
                 </div>
 
             </div>
