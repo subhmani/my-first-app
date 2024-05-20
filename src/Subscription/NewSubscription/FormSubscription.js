@@ -84,7 +84,7 @@ const FormSubscription=(props)=>{
        /*  setform((prevState)=>{
             return {...prevState,userDate:events.target.value}
     }) */
-        console.log(form)
+        //console.log(form)
         //setUserDate(events.target.value);
        // console.log("userDate",userDate)
     }
