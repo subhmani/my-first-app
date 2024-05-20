@@ -8,6 +8,7 @@ import NewSubscription from './Subscription/NewSubscription/NewSubscription';
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
 import SubscriptionList from './Subscription/NewSubscription/SubscriptionList';
 import SubscriptionChart from './Subscription/NewSubscription/SubscriptionChart';
+import SubscriptionsContext from './store/subscriptions-context';
 const INITIAL_SUBSCRIPTION=[{
   id:"1",
   date:(new Date('2024','03','23')),
@@ -66,8 +67,10 @@ useEffect(()=>{
     <Container>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
+    <SubscriptionsContext.Provider>
     {/* <SubscriptionChart filteredSubscriptions = {filteredSubscriptions}/> */}
     <SubscriptionList subscription={filteredSubscriptions}/>
+    </SubscriptionsContext.Provider>
     {/* {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
     {filteredSubscriptions.length !== 0 && 
     filteredSubscriptions.map(subscription =>
