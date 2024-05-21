@@ -64,14 +64,14 @@ useEffect(()=>{
     } */
   return (
     // React.createElement('div',{},React.createElement('h2',{},'Lets start!!'))
-    
+    <SubscriptionsContext.Provider value={{subscriptionList:[],dummy:filterChangeHandler}}>
     <Container>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
-    <SubscriptionsContext.Provider value={{subscriptionList:[],dummy:filterChangeHandler}}>
+    
     {/* <SubscriptionChart filteredSubscriptions = {filteredSubscriptions}/> */}
     <SubscriptionList subscription={filteredSubscriptions}/>
-    </SubscriptionsContext.Provider>
+    
     {/* {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
     {filteredSubscriptions.length !== 0 && 
     filteredSubscriptions.map(subscription =>
@@ -90,6 +90,7 @@ useEffect(()=>{
     <Subscription date={subscriptions[2].date} title={subscriptions[2].title} amount={subscriptions[2].amount}/>
  */}
     </Container>
+    </SubscriptionsContext.Provider>
   );
 }
 
