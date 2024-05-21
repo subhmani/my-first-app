@@ -3,8 +3,9 @@ import Subscription from '../Subscription';
 import SubscriptionsContext from '../../store/subscriptions-context';
 import { useContext } from 'react';
 const SubscriptionList=(props)=>{
+    const ctx = useContext(SubscriptionsContext)
 if (props.subscription.length === 0){return <h3 className='list_no_data'>No Data Found</h3>}
-const ctx = useContext(SubscriptionsContext)
+
 return(
     /* <SubscriptionsContext.Consumer>
         {(ctx)=>{

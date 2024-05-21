@@ -47,8 +47,9 @@ useEffect(()=>{
       console.log("on add Subscription",subscriptions)
     }
     const filterChangeHandler=(data)=>{
-      localStorage.setItem('filteredYear',data)
       setFilteredYear(data);
+      localStorage.setItem('filteredYear',data)
+      
       console.log('filter change handler',data)
     }
     const filteredSubscriptions=subscriptions.filter((item)=>{
@@ -67,7 +68,7 @@ useEffect(()=>{
     <Container>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
-    <SubscriptionsContext.Provider value={{subscriptionList:[]}}>
+    <SubscriptionsContext.Provider value={{subscriptionList:[],dummy:filterChangeHandler}}>
     {/* <SubscriptionChart filteredSubscriptions = {filteredSubscriptions}/> */}
     <SubscriptionList subscription={filteredSubscriptions}/>
     </SubscriptionsContext.Provider>
