@@ -67,7 +67,7 @@ useEffect(()=>{
     <Container>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
-    <SubscriptionsContext.Provider>
+    <SubscriptionsContext.Provider value={{subscriptionList:[]}}>
     {/* <SubscriptionChart filteredSubscriptions = {filteredSubscriptions}/> */}
     <SubscriptionList subscription={filteredSubscriptions}/>
     </SubscriptionsContext.Provider>
