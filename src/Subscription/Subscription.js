@@ -9,14 +9,23 @@ class Subscription extends Component{
         super();
         this.state={
         title:'',
-        userName:'',
-        address:'',
-        showTitle:false    
+        updateTitle:true    
         }        
+    }
+    componentDidMount(){
+        console.log('In Component Did Mount')
+    }
+    componentDidUpdate(prevProp,prevState){
+        if(prevState.updateTitle!==this.state.updateTitle){
+            console.log('In component did update')
+        }
+    }
+    componentWillUnmount(){
+        console.log('In component will unmount')
     }
     onClickHandler(){
 
-        this.setState({title:'Changed title'})
+        this.setState({title:'Changed title',updateTitle:false})
         
        // setTitle("Change Title")
         console.log("On Button Clicked",this.state.title)
