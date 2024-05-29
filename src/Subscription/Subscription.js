@@ -5,6 +5,13 @@ import React, { Component, useState } from 'react';
 
 
 class Subscription extends Component{
+    constructor(){
+        this.state={}
+    }
+    onClickHandler(){
+        setTitle("Change Title")
+        console.log("On Button Clicked",title)
+    }
     render(){
        return <Container className='subscription'>
         <SubscriptionDate date={this.props.date}/>
