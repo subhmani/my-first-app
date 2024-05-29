@@ -6,19 +6,28 @@ import React, { Component, useState } from 'react';
 
 class Subscription extends Component{
     constructor(){
-        this.state={}
+        super();
+        this.state={
+        title:'',
+        userName:'',
+        address:'',
+        showTitle:false    
+        }        
     }
     onClickHandler(){
-        setTitle("Change Title")
-        console.log("On Button Clicked",title)
+
+        this.setState({title:'Changed title'})
+        
+       // setTitle("Change Title")
+        console.log("On Button Clicked",this.state.title)
     }
     render(){
        return <Container className='subscription'>
         <SubscriptionDate date={this.props.date}/>
       {/*   <h2 className='subscription_title'>{title}</h2> */}
-      <h2 className="subscription_title">Monthly Subscription</h2>
+      <h2 className="subscription_title">{this.state.title}</h2>
         <div className='subscription_price'>{this.props.amount}</div>
-      {/*   <button type='button' id='changeTitleButton'onClick={onClickHandler}>Change Title</button> */}
+        <button type='button' id='changeTitleButton'onClick={this.onClickHandler.bind(this)}>Change Title</button>
     </Container>
     }
 }
