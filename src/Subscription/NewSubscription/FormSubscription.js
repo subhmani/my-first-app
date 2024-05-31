@@ -100,10 +100,13 @@ const FormSubscription=(props)=>{
     }
     const submitHandler=(events)=>{
         events.preventDefault()
+        try{
         if (formReducer.userTitle.trim().length===0){
             setIsValid(false);
+            throw new Error('Your input is not valid');
             return
-        }
+        }}
+        catch{}
         const Subscription={title:formReducer.userTitle,amount:formReducer.userAmount,date:new Date(formReducer.userDate)}
         props.onSave(Subscription);
         props.onCancel();

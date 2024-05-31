@@ -9,7 +9,7 @@ class Subscription extends Component{
     static contextType=SubscriptionsContext
     constructor(){
         super();
-        this.state={
+        this.state={  
         title:'',
         updateTitle:true    
         }        

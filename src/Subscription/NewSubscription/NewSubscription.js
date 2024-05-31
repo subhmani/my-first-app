@@ -1,6 +1,7 @@
 import "./NewSubscription.css"
 import FormSubscription from './FormSubscription';
 import { useState } from "react";
+import ErrorBoundary from "./ErrorBoundary";
 const NewSubscription=(props)=>{
     const [showForm,setShowForm]=useState(false)
  const  onSaveHandler = (data) => {
@@ -16,11 +17,13 @@ const NewSubscription=(props)=>{
     const hideFormHandler=()=>{
         setShowForm(false)
     }
-    return <div className="new_subscription">
-       {showForm && <FormSubscription onSave={onSaveHandler} onCancel={hideFormHandler}/>} 
+    return ( 
+    <ErrorBoundary>
+        <div className="new_subscription">
+        {showForm && <FormSubscription onSave={onSaveHandler} onCancel={hideFormHandler}/>} 
         <button type="button" className="responsive" onClick={showFormHandler}>Add New</button>
         </div>
-        
-    
+    </ErrorBoundary>
+    )
 }
 export default NewSubscription
