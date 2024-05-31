@@ -9,6 +9,7 @@ import { eventWrapper } from '@testing-library/user-event/dist/utils';
 import SubscriptionList from './Subscription/NewSubscription/SubscriptionList';
 import SubscriptionChart from './Subscription/NewSubscription/SubscriptionChart';
 import SubscriptionsContext from './store/subscriptions-context';
+
 const INITIAL_SUBSCRIPTION=[{
   id:"1",
   date:(new Date('2024','03','23')),

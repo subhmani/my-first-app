@@ -1,3 +1,4 @@
+import SubscriptionsContext from '../store/subscriptions-context';
 import Container from '../templates/Container'
 import './Subscription.css'
 import SubscriptionDate from './SubscriptionDate'
@@ -5,6 +6,7 @@ import React, { Component, useState } from 'react';
 
 
 class Subscription extends Component{
+    static contextType=SubscriptionsContext
     constructor(){
         super();
         this.state={
@@ -16,6 +18,7 @@ class Subscription extends Component{
         console.log('In Component Did Mount')
     }
     componentDidUpdate(prevProp,prevState){
+        console.log('The value of context',this.context.subscriptionList)
         if(prevState.updateTitle!==this.state.updateTitle){
             console.log('In component did update')
         }
@@ -31,13 +34,22 @@ class Subscription extends Component{
         console.log("On Button Clicked",this.state.title)
     }
     render(){
-       return <Container className='subscription'>
+       return(
+        <SubscriptionsContext.Consumer>
+            {(ctx)=>{
+                <ul className='list'>
+                    {ctx.subscriptionList.map((subscription)=>"abc")}
+                </ul>
+            }}
+        <Container className='subscription'>
         <SubscriptionDate date={this.props.date}/>
       {/*   <h2 className='subscription_title'>{title}</h2> */}
       <h2 className="subscription_title">{this.state.title}</h2>
         <div className='subscription_price'>{this.props.amount}</div>
         <button type='button' id='changeTitleButton'onClick={this.onClickHandler.bind(this)}>Change Title</button>
     </Container>
+    </SubscriptionsContext.Consumer>
+       )
     }
 }
 

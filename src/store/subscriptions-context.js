@@ -5,5 +5,5 @@ return (<SubscriptionsContext.Provider>
 </SubscriptionsContext.Provider>)
 }
 
-const SubscriptionsContext = React.createContext({subscriptionList:[],dummy:{}})
+const SubscriptionsContext = React.createContext({subscriptionList:[]})
 export default SubscriptionsContext;
