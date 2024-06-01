@@ -57,6 +57,10 @@ useEffect(()=>{
       return item.date.getFullYear().toString()===filteredYear
     })
 
+    const fetchListHandler=()=>{
+      fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com');
+    }
+
    /*  let content=<h3>No Data found</h3>;
     if (filteredSubscriptions.length !==0){
       content=filteredSubscriptions.map(subscription =>
@@ -67,6 +71,7 @@ useEffect(()=>{
     // React.createElement('div',{},React.createElement('h2',{},'Lets start!!'))
     <SubscriptionsContext.Provider value={{subscriptionList:[],dummy:filterChangeHandler}}>
     <Container>
+    <button type='button' onClick={fetchListHandler}>Fatch List</button>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
     
@@ -90,6 +95,7 @@ useEffect(()=>{
     <Subscription date={subscriptions[1].date} title={subscriptions[1].title} amount={subscriptions[1].amount}/>
     <Subscription date={subscriptions[2].date} title={subscriptions[2].title} amount={subscriptions[2].amount}/>
  */}
+ 
     </Container>
     </SubscriptionsContext.Provider>
   );
