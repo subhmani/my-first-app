@@ -57,15 +57,18 @@ useEffect(()=>{
       return item.date.getFullYear().toString()===filteredYear
     })
 
-    const fetchListHandler=()=>{
-      fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com').then(
+    const fetchListHandler=async()=>{
+     const response = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com')
+     const data = await response.json
+     const transformData = data.toString()
+     /* .then(
         (response)=>{
           console.log('fatched data', response,response.json)
           return response.json
         }).then((data)=>{
           //transform 
         })
-      console.log('Fatched data')
+      console.log('Fatched data') */
     }
 
    /*  let content=<h3>No Data found</h3>;
