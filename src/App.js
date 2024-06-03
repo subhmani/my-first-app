@@ -31,6 +31,7 @@ const INITIAL_SUBSCRIPTION=[{
  const App = () => {
   const [subscriptions,setSubscriptions]=useState(INITIAL_SUBSCRIPTION)
 const [filteredYear,setFilteredYear]=useState('2021');
+const[isLoading,setIsLoading]=useState(false);
 useEffect(()=>{
   if(localStorage.getItem('filteredYear')){
     setFilteredYear(localStorage.getItem('filteredYear'))
@@ -58,6 +59,7 @@ useEffect(()=>{
     })
 
     const fetchListHandler=async()=>{
+      setIsLoading(true);
      const response = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com')
      const data = await response.json
      const transformData = data.toString()
@@ -69,6 +71,7 @@ useEffect(()=>{
           //transform 
         })
       console.log('Fatched data') */
+      setIsLoading(false);
     }
 
    /*  let content=<h3>No Data found</h3>;
@@ -86,8 +89,8 @@ useEffect(()=>{
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
     
     {/* <SubscriptionChart filteredSubscriptions = {filteredSubscriptions}/> */}
-    <SubscriptionList subscription={filteredSubscriptions}/>
-    
+    {!isLoading && <SubscriptionList subscription={filteredSubscriptions}/>}
+    {isLoading && <p>Please Wait...</p>}
     {/* {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
     {filteredSubscriptions.length !== 0 && 
     filteredSubscriptions.map(subscription =>
