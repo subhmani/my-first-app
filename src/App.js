@@ -58,7 +58,14 @@ useEffect(()=>{
     })
 
     const fetchListHandler=()=>{
-      fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com');
+      fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com').then(
+        (response)=>{
+          console.log('fatched data', response,response.json)
+          return response.json
+        }).then((data)=>{
+          //transform 
+        })
+      console.log('Fatched data')
     }
 
    /*  let content=<h3>No Data found</h3>;
