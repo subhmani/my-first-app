@@ -89,7 +89,8 @@ useEffect(()=>{
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
     
     {/* <SubscriptionChart filteredSubscriptions = {filteredSubscriptions}/> */}
-    {!isLoading && <SubscriptionList subscription={filteredSubscriptions}/>}
+    {!isLoading && filteredSubscriptions.length>0 && <SubscriptionList subscription={filteredSubscriptions}/>}
+    {!isLoading && filteredSubscriptions.length===0 && <p className='list_no_data'>No Data Found</p>}
     {isLoading && <p>Please Wait...</p>}
     {/* {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
     {filteredSubscriptions.length !== 0 && 
