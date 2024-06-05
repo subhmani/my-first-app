@@ -59,31 +59,38 @@ useEffect(()=>{
       return item.date.getFullYear().toString()===filteredYear
     })
     
-    const fetchListHandler=async()=>{
+    /* const fetchListHandler=async()=>{
       try{
       const response = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com')
       if(!response.ok)
         {throw new Error('Somthing went worng')}
-      }catch{
-        
-      }
       const data = await response.json
-      const transformData = data.toString()
+      const transformsData = data.toString()
+      }catch(error){
+        setError(error.message);
+        console.log('Error catched', error.message)
+      }
+     
       
-    }
+    } */
     
-   /*  const fetchListHandler=()=>{
+    const fetchListHandler=()=>{
       setIsLoading(true);
      fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com').then(
         (response)=>{
           console.log('fatched data', response,response.json)
-          return response.json
+          return response.json()
         }).then((data)=>{
           //transform 
-        })
-      console.log('Fatched data')
-      setIsLoading(false);
-    } */
+          console.log('transformed data', data);
+          setIsLoading(false);
+        }).catch((error)=>{
+          setError(error.message);
+          console.log('Error catched', error.message);
+        }
+      );
+      
+    }
 
    /*  let content=<h3>No Data found</h3>;
     if (filteredSubscriptions.length !==0){
@@ -100,9 +107,10 @@ useEffect(()=>{
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
     
     {/* <SubscriptionChart filteredSubscriptions = {filteredSubscriptions}/> */}
-    {!isLoading && filteredSubscriptions.length>0 && <SubscriptionList subscription={filteredSubscriptions}/>}
+    {!isLoading && !error && filteredSubscriptions.length>0 && <SubscriptionList subscription={filteredSubscriptions}/>}
     {!isLoading && filteredSubscriptions.length===0 && <p className='list_no_data'>No Data Found</p>}
     {isLoading && <p>Please Wait...</p>}
+    {!isLoading && error && <p>error.message</p>}
     {/* {filteredSubscriptions.length===0 && <h3>No Data Found</h3>}
     {filteredSubscriptions.length !== 0 && 
     filteredSubscriptions.map(subscription =>
