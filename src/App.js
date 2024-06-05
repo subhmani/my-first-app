@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Subscription from './Subscription/Subscription';
 import Container from './templates/Container';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Filter from './Subscription/NewSubscription/Filter';
 import NewSubscription from './Subscription/NewSubscription/NewSubscription';
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
@@ -74,7 +74,7 @@ useEffect(()=>{
       
     } */
     
-    const fetchListHandler=()=>{
+    const fetchListHandler=useCallback(()=>{
       setIsLoading(true);
      fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com').then(
         (response)=>{
@@ -87,10 +87,14 @@ useEffect(()=>{
         }).catch((error)=>{
           setError(error.message);
           console.log('Error catched', error.message);
+          setIsLoading(false)
         }
       );
       
-    }
+    })
+    useEffect(()=>{
+      fetchListHandler();
+    },[fetchListHandler])
 
    /*  let content=<h3>No Data found</h3>;
     if (filteredSubscriptions.length !==0){
