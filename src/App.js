@@ -44,10 +44,17 @@ useEffect(()=>{
     /* let date=(new Date('2024','03','26'));
     let title="Monthly Subscription";
     let amount='125.60'; */
-    const addSubscriptionHandler=(data)=>{
+    const addSubscriptionHandler=async(data)=>{
       subscriptions.push(data)
       setSubscriptions(prevState=>{return[data,...subscriptions]})
-      console.log("on add Subscription",subscriptions)
+      const postresponse = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com/subscription.json',
+      {
+        method:'POST',
+        body:JSON.stringify(data),
+        headers:{'content-type':'application/json'}
+      })
+      const dataStored=await postresponse.json()
+      console.log("on add Subscription",dataStored)
     }
     const filterChangeHandler=(data)=>{
       setFilteredYear(data);
@@ -76,7 +83,7 @@ useEffect(()=>{
     
     const fetchListHandler=useCallback(()=>{
       setIsLoading(true);
-     fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com').then(
+     fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com/subscription.json').then(
         (response)=>{
           console.log('fatched data', response,response.json)
           return response.json()
