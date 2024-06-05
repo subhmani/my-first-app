@@ -32,6 +32,7 @@ const INITIAL_SUBSCRIPTION=[{
   const [subscriptions,setSubscriptions]=useState(INITIAL_SUBSCRIPTION)
 const [filteredYear,setFilteredYear]=useState('2021');
 const[isLoading,setIsLoading]=useState(false);
+const[error,setError]=useState('');
 useEffect(()=>{
   if(localStorage.getItem('filteredYear')){
     setFilteredYear(localStorage.getItem('filteredYear'))
@@ -57,22 +58,32 @@ useEffect(()=>{
     const filteredSubscriptions=subscriptions.filter((item)=>{
       return item.date.getFullYear().toString()===filteredYear
     })
-
+    
     const fetchListHandler=async()=>{
+      try{
+      const response = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com')
+      if(!response.ok)
+        {throw new Error('Somthing went worng')}
+      }catch{
+        
+      }
+      const data = await response.json
+      const transformData = data.toString()
+      
+    }
+    
+   /*  const fetchListHandler=()=>{
       setIsLoading(true);
-     const response = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com')
-     const data = await response.json
-     const transformData = data.toString()
-     /* .then(
+     fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com').then(
         (response)=>{
           console.log('fatched data', response,response.json)
           return response.json
         }).then((data)=>{
           //transform 
         })
-      console.log('Fatched data') */
+      console.log('Fatched data')
       setIsLoading(false);
-    }
+    } */
 
    /*  let content=<h3>No Data found</h3>;
     if (filteredSubscriptions.length !==0){
