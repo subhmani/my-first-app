@@ -9,6 +9,7 @@ import { eventWrapper } from '@testing-library/user-event/dist/utils';
 import SubscriptionList from './Subscription/NewSubscription/SubscriptionList';
 import SubscriptionChart from './Subscription/NewSubscription/SubscriptionChart';
 import SubscriptionsContext from './store/subscriptions-context';
+import useTime from './hooks/time';
 
 const INITIAL_SUBSCRIPTION=[
   /* {
@@ -35,17 +36,18 @@ const INITIAL_SUBSCRIPTION=[
 const [filteredYear,setFilteredYear]=useState('2021');
 const[isLoading,setIsLoading]=useState(false);
 const[error,setError]=useState('');
-const[CurrentTime, setCurrentTime]=useState('');
+//const[CurrentTime, setCurrentTime]=useState('');
 useEffect(()=>{
   if(localStorage.getItem('filteredYear')){
     setFilteredYear(localStorage.getItem('filteredYear'))
     console.log('in useEffect',localStorage.getItem('filteredYear'))
   }
-  const interval=setInterval(()=>{
+  /* const interval=setInterval(()=>{
     setCurrentTime(new Date().toLocaleString())
   },1000)
-  return ()=>clearInterval(interval)
+  return ()=>clearInterval(interval) */
 },[]);
+const CurrentTime =useTime();
 
 
     /* let date=(new Date('2024','03','26'));
