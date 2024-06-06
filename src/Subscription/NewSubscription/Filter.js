@@ -3,13 +3,14 @@ import './Filter.css'
 import useTime from '../../hooks/time';
 const Filter=(props)=>{
     //const[currentTime,setCurrentTime]=useState('');
-    const currentTime=useTime()
+    const currentTime=useTime(5000)
     /* useEffect(()=>{
         const interval=setInterval(()=>{
                 setCurrentTime(new Date().toLocaleString())
         },10000)
         return ()=>clearInterval(interval)
     },[]) */
+    
     const onSelectHandler=(events)=>{
         console.log('onSelect Handler',events.target.value)
         props.onFilterChange(events.target.value)

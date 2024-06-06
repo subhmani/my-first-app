@@ -1,9 +1,12 @@
-import { useState } from "react";
-const useTime=()=>{
+import { useState, useEffect } from "react";
+const useTime=(intervalMiliSecond=1000)=>{
     const[currentTime, setCurrentTime]=useState('');
-   const interval=setInterval(()=>{
+   useEffect(()=>{
+    const interval=setInterval(()=>{
           setCurrentTime(new Date().toLocaleString())
-        },1000)
-    return currentTime     
+        },intervalMiliSecond)
+    },[])
+    return currentTime
+
 }
 export default useTime;
