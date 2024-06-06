@@ -45,7 +45,9 @@ useEffect(()=>{
     let title="Monthly Subscription";
     let amount='125.60'; */
     const addSubscriptionHandler=async(data)=>{
-      subscriptions.push(data)
+     // subscriptions.push(data);
+     try{
+      setIsLoading(true)
       setSubscriptions(prevState=>{return[data,...subscriptions]})
       const postresponse = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com/subscription.json',
       {
@@ -53,8 +55,14 @@ useEffect(()=>{
         body:JSON.stringify(data),
         headers:{'content-type':'application/json'}
       })
+      setIsLoading(false)
       const dataStored=await postresponse.json()
       console.log("on add Subscription",dataStored)
+    }
+    catch(error){
+      setError(error.message);
+      setIsLoading(false);
+    }
     }
     const filterChangeHandler=(data)=>{
       setFilteredYear(data);
