@@ -1,8 +1,8 @@
 import './SubscriptionDate.css';
 const SubscriptionDate = (props) => {
-    const month=props.date.toLocaleString('default',{month:'long'});
-    const day=props.date.toLocaleString('default',{day:'2-digit'});
-    const year=props.date.getFullYear();
+    const month=new Date(props.date).toLocaleString('default',{month:'long'});
+    const day=new Date(props.date).toLocaleString('default',{day:'2-digit'});
+    const year=new Date(props.date).getFullYear();
     return(
         <div className='date'>
         <div className='month'> {month} </div>

@@ -10,7 +10,8 @@ import SubscriptionList from './Subscription/NewSubscription/SubscriptionList';
 import SubscriptionChart from './Subscription/NewSubscription/SubscriptionChart';
 import SubscriptionsContext from './store/subscriptions-context';
 
-const INITIAL_SUBSCRIPTION=[{
+const INITIAL_SUBSCRIPTION=[
+  /* {
   id:"1",
   date:(new Date('2024','03','23')),
   title:"Monthly Subscription",
@@ -27,7 +28,8 @@ const INITIAL_SUBSCRIPTION=[{
   date:(new Date('2021','09','05')),
   title:"Quarterly Subscription",
   amount:"425.50"
-}]
+} */
+]
  const App = () => {
   const [subscriptions,setSubscriptions]=useState(INITIAL_SUBSCRIPTION)
 const [filteredYear,setFilteredYear]=useState('2021');
@@ -71,7 +73,7 @@ useEffect(()=>{
       console.log('filter change handler',data)
     }
     const filteredSubscriptions=subscriptions.filter((item)=>{
-      return item.date.getFullYear().toString()===filteredYear
+      return new Date (item.date).getFullYear().toString()===filteredYear
     })
     
     /* const fetchListHandler=async()=>{
@@ -96,8 +98,14 @@ useEffect(()=>{
           console.log('fatched data', response,response.json)
           return response.json()
         }).then((data)=>{
-          //transform 
-          console.log('transformed data', data);
+          //transform
+        let  fetchedSubscriptions=[] 
+          for(let key in data){
+            //console.log('value for',key,data[key])
+            fetchedSubscriptions.push(data[key])
+          }
+          console.log('transformed data', fetchedSubscriptions);
+          setSubscriptions(fetchedSubscriptions);
           setIsLoading(false);
         }).catch((error)=>{
           setError(error.message);

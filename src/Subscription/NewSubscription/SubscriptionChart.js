@@ -14,8 +14,8 @@ const SubscriptionChart=(props)=>{
                     {label:'Nov',value:0},
                     {label:'Dec',value:0},
                 ];
-     for(const subscription of props.filteredSubscription){
-        const month=subscription.data.getMonth;
+     for(let subscription of props.filteredSubscription){
+        const month=new Date(subscription.data).getMonth;
         chartData[month].value += subscription.amount
      }               
     return (
