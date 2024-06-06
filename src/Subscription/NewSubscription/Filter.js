@@ -14,6 +14,7 @@ const Filter=(props)=>{
     const onSelectHandler=(events)=>{
         console.log('onSelect Handler',events.target.value)
         props.onFilterChange(events.target.value)
+        
     }
     return(
         <div className='filter'>
