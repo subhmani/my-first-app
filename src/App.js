@@ -35,11 +35,16 @@ const INITIAL_SUBSCRIPTION=[
 const [filteredYear,setFilteredYear]=useState('2021');
 const[isLoading,setIsLoading]=useState(false);
 const[error,setError]=useState('');
+const[CurrentTime, setCurrentTime]=useState('');
 useEffect(()=>{
   if(localStorage.getItem('filteredYear')){
     setFilteredYear(localStorage.getItem('filteredYear'))
     console.log('in useEffect',localStorage.getItem('filteredYear'))
   }
+  const interval=setInterval(()=>{
+    setCurrentTime(new Date().toLocaleString())
+  },1000)
+  return ()=>clearInterval(interval)
 },[]);
 
 
@@ -130,6 +135,7 @@ useEffect(()=>{
     <SubscriptionsContext.Provider value={{subscriptionList:[],dummy:filterChangeHandler}}>
     <Container>
     <button type='button' onClick={fetchListHandler}>Fatch List</button>
+    <span className='current-time'>{CurrentTime}</span>
     <NewSubscription onAddSubscription={addSubscriptionHandler}/>
     <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}/>
     
