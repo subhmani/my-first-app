@@ -83,22 +83,31 @@ const CurrentTime =useTime();
       return new Date (item.date).getFullYear().toString()===filteredYear
     })
     
-    /* const fetchListHandler=async()=>{
+    /* const fetchListHandler=useCallback(async()=>{
       try{
-      const response = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com')
-      if(!response.ok)
-        {throw new Error('Somthing went worng')}
+        setIsLoading(true)
+      const response = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com/subscription.json')
+      
       const data = await response.json
-      const transformsData = data.toString()
-      }catch(error){
+      let fetchedSubscriptions=[]
+      for(let key in data){
+        //console.log('value for',key,data[key])
+        fetchedSubscriptions.push(data[key])
+      }
+      setSubscriptions(fetchedSubscriptions);
+          setIsLoading(false);
+      
+      }
+      catch(error){
         setError(error.message);
         console.log('Error catched', error.message)
+        setIsLoading(false)
       }
      
       
-    } */
+    },[]) */
     
-    const fetchListHandler=useCallback(()=>{
+    /* const fetchListHandler=useCallback(()=>{
       setIsLoading(true);
      fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com/subscription.json').then(
         (response)=>{
@@ -121,7 +130,7 @@ const CurrentTime =useTime();
         }
       );
       
-    })
+    }) */
     useEffect(()=>{
       fetchListHandler();
     },[fetchListHandler])
