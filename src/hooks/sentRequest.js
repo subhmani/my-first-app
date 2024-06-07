@@ -1,13 +1,14 @@
+import { useState } from "react";
 const useSentRequest=(requestConfig,handleData)=>{
     const[isLoading,setIsLoading]=useState(false);
     const[error,setError]=useState('');
-    const sendRequest=()=>{
+    const sendRequest=async()=>{
         try{
             setIsLoading(true)
-          const response = await fetch(requestConfig.url,
-            {method:requestConfig.method,
-                body:JSON.stringify(requestConfig.body),
-                headers:requestConfig.headers})
+          const response = await fetch(requestConfig.url?requestConfig.url:'',
+            {method:requestConfig.method?requestConfig.method:'GET',
+                body:requestConfig.body?JSON.stringify(requestConfig.body):null,
+                headers:requestConfig.headers?requestConfig.headers:''})
                 const data = await response.json()
                 handleData(data);
                 setIsLoading(false);

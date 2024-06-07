@@ -10,6 +10,7 @@ import SubscriptionList from './Subscription/NewSubscription/SubscriptionList';
 import SubscriptionChart from './Subscription/NewSubscription/SubscriptionChart';
 import SubscriptionsContext from './store/subscriptions-context';
 import useTime from './hooks/time';
+import useSentRequest from './hooks/sentRequest';
 
 const INITIAL_SUBSCRIPTION=[
   /* {
@@ -54,6 +55,7 @@ const CurrentTime =useTime();
     let title="Monthly Subscription";
     let amount='125.60'; */
     const addSubscriptionHandler=async(data)=>{
+
      // subscriptions.push(data);
      /* try{
       setIsLoading(true)
@@ -82,9 +84,18 @@ const CurrentTime =useTime();
     const filteredSubscriptions=subscriptions.filter((item)=>{
       return new Date (item.date).getFullYear().toString()===filteredYear
     })
-    
-    /* const fetchListHandler=useCallback(async()=>{
-      try{
+    const handleFetchedData=(data)=>{
+      let fetchedSubscriptions=[]
+      for(let key in data){
+        fetchedSubscriptions.push(data[key])
+      }
+      setSubscriptions(fetchedSubscriptions);
+    }
+    const {isLoading,error,sendRequest:sendFetchApi} = useSentRequest({url:'https://react-workspace-5cb68-default-rtdb.firebaseio.com/subscription.json'},handleFetchedData);
+    const fetchListHandler=useCallback(()=>{
+      sendFetchApi();
+     
+      /*  try{
         setIsLoading(true)
       const response = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com/subscription.json')
       
@@ -102,10 +113,10 @@ const CurrentTime =useTime();
         setError(error.message);
         console.log('Error catched', error.message)
         setIsLoading(false)
-      }
+      } */
      
       
-    },[]) */
+    },[])
     
     /* const fetchListHandler=useCallback(()=>{
       setIsLoading(true);
