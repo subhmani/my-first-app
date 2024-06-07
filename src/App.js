@@ -34,8 +34,8 @@ const INITIAL_SUBSCRIPTION=[
  const App = () => {
   const [subscriptions,setSubscriptions]=useState(INITIAL_SUBSCRIPTION)
 const [filteredYear,setFilteredYear]=useState('2021');
-const[isLoading,setIsLoading]=useState(false);
-const[error,setError]=useState('');
+//const[isLoading,setIsLoading]=useState(false);
+//const[error,setError]=useState('');
 //const[CurrentTime, setCurrentTime]=useState('');
 useEffect(()=>{
   if(localStorage.getItem('filteredYear')){
@@ -55,7 +55,7 @@ const CurrentTime =useTime();
     let amount='125.60'; */
     const addSubscriptionHandler=async(data)=>{
      // subscriptions.push(data);
-     try{
+     /* try{
       setIsLoading(true)
       setSubscriptions(prevState=>{return[data,...subscriptions]})
       const postresponse = await fetch('https://react-workspace-5cb68-default-rtdb.firebaseio.com/subscription.json',
@@ -71,7 +71,7 @@ const CurrentTime =useTime();
     catch(error){
       setError(error.message);
       setIsLoading(false);
-    }
+    } */
     }
     const filterChangeHandler=(data)=>{
       setFilteredYear(data);
